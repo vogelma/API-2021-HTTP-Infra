@@ -10,38 +10,34 @@ app.get('/test', function(req, res){
 });
 
 app.get('/', function(req,res){
-    res.send(generateStudent());
+    res.send(generatePets());
 });
 
 app.listen(3000, function(){
     console.log('Accepting HTTP requests on port 3000.');
 });
 
-function generateStudent(){
-    var numberOfStudents = chance.integer({
+function generatePets(){
+
+    var numberOfPets = chance.integer({
         min: 0,
         max: 10
     });
-    console.log(numberOfStudents);
-    var students = [];
-    for(var i = 0; i < numberOfStudents; i++){
-        var gender = chance.gender();
-        var birthYear = chance.year({
-            min: 1986,
-            max: 1996
-        });
-        students.push({
-            firstName: chance.first({
-                gender: gender
-            }),
-            lastName: chance.last(),
-            gender: gender,
-            birthday: chance.birthday({
-                year: birthYear
-            })
+
+    console.log(numberOfPets);
+
+    var pets = [];
+    for(var i = 0; i < numberOfPets; i++){
+        var name = chance.animal();
+        var color = chance.color();
+
+        pets.push({
+            animal: name,
+            color: color,
         });
     };
-    console.log(students);
-    return students;
+    console.log(pets);
+
+    return pets;
 }
 
